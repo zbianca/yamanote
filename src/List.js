@@ -11,8 +11,16 @@ class List extends Component {
     this.setState({ query })
   }
 
+  // componentDidUpdate(prevProps) {
+  //   // Typical usage (don't forget to compare props):
+  //   if (this.props.query !== prevProps.query) {
+  //     this.props.filterMarkers(this.state.filteredStations);
+  //   }
+  // }
+
   render() {
 
+    // TODO: check possibilities to filter using a regular expression
     const filteredStations = this.props.stations.filter(
       (station) => {
         const stationNorm = station.name.toLowerCase().replace('ō', 'o').replace('ū', 'u');
@@ -20,6 +28,8 @@ class List extends Component {
         return stationNorm.indexOf(queryNorm) !== -1 && stationNorm.startsWith(queryNorm);
       }
     );
+    this.props.filterMarkers(filteredStations);
+
 
     return(
       <section className="App-header">

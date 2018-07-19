@@ -11,7 +11,7 @@ class Map extends Component {
         defaultZoom = { 12 }
       >
 
-        {this.props.stations.map(station => <Marker key={station.id} name={station.name} position={station.position} visible={true} />)}
+        {this.props.stations.map(station => <Marker key={station.id} name={station.name} position={station.position} visible={station.visible} />)}
 
       </GoogleMap>
     ));
