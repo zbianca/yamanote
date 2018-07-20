@@ -5,31 +5,24 @@ class List extends Component {
 
   state = {
     query: '',
+    filteredStations: this.props.stations,
   }
 
   updateQuery = (query) => {
-    this.setState({ query })
-  }
-
-  // componentDidUpdate(prevProps) {
-  //   // Typical usage (don't forget to compare props):
-  //   if (this.props.query !== prevProps.query) {
-  //     this.props.filterMarkers(this.state.filteredStations);
-  //   }
-  // }
-
-  render() {
-
+    this.setState({ query });
     // TODO: check possibilities to filter using a regular expression
     const filteredStations = this.props.stations.filter(
       (station) => {
         const stationNorm = station.name.toLowerCase().replace('ō', 'o').replace('ū', 'u');
-        const queryNorm = this.state.query.toLowerCase().replace('ō', 'o').replace('ū', 'u');
+        const queryNorm = query.toLowerCase().replace('ō', 'o').replace('ū', 'u');
         return stationNorm.indexOf(queryNorm) !== -1 && stationNorm.startsWith(queryNorm);
       }
     );
+    this.setState({ filteredStations });
     this.props.filterMarkers(filteredStations);
+  }
 
+  render() {
 
     return(
       <section className="App-header">
@@ -42,7 +35,7 @@ class List extends Component {
               onChange={(event) => this.updateQuery(event.target.value)}
             />
         <ul>
-          {filteredStations.map(station => <li key={station.id}>{station.name}</li>)}
+          {this.state.filteredStations.map(station => <li key={station.id}>{station.name}</li>)}
         </ul>
       </section>
     );

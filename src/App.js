@@ -17,9 +17,7 @@ class App extends Component {
       else
         station['visible'] = false;
     });
-    //this.setState({ stations:  });
-    console.log(updatedStations);
-
+    this.setState({ stations: updatedStations });
   };
 
   render() {
