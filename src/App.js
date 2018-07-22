@@ -7,15 +7,14 @@ import stations from './stations.js';
 class App extends Component {
   state = {
     stations,
-  }
+  };
 
-  filterMarkers = (filteredStations) => {
+  filterMarkers = filteredStations => {
     let updatedStations = JSON.parse(JSON.stringify(this.state.stations));
-    updatedStations.forEach( station => {
-      if(filteredStations.find(st => st.id === station.id))
+    updatedStations.forEach(station => {
+      if (filteredStations.find(st => st.id === station.id))
         station['visible'] = true;
-      else
-        station['visible'] = false;
+      else station['visible'] = false;
     });
     this.setState({ stations: updatedStations });
   };
@@ -23,8 +22,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <List stations={this.state.stations} filterMarkers={this.filterMarkers} />
-        <Map stations={this.state.stations}/>
+        <List
+          stations={this.state.stations}
+          filterMarkers={this.filterMarkers}
+        />
+        <Map stations={this.state.stations} />
       </div>
     );
   }
