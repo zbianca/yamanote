@@ -32,7 +32,8 @@ class List extends Component {
     return (
       <section className="List-section">
         <img src={logo} className="App-logo" alt="logo" />
-        <h1 className="App-title">Yamanote Line Stations</h1>
+        <h1 className="App-title">Yamanote&nbsp;Line</h1>
+        <hr className="App-title-bar" />
         <input
           className="Search-input"
           type="text"
@@ -43,6 +44,7 @@ class List extends Component {
         <ul className="List-titles">
           {this.state.filteredStations.map(station => (
             <li
+              className="List-item"
               key={station.id}
               onClick={() => this.props.showInfo(station.id)}
             >

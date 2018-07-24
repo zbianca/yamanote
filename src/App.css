@@ -4,22 +4,29 @@
 }
 
 .App-logo {
-  height: 80px;
+  height: 60px;
+  float: left;
+  margin: 0 20px 10px 0;
 }
 
 .App-title {
-  font-size: 1.5em;
+  font-family: "Amaranth", sans-serif;
+  font-size: 1.8em;
+  line-height: 1.3;
+  margin-top: 24px;
+  color: #fff;
 }
 
-.App-intro {
-  font-size: large;
+.App-title-bar {
+  color: #7caf52;
 }
 
 .List-section {
-  background-color: #222;
   width: 20vw;
+  min-width: 215px;
+  background-color: #222;
+  color: #fff;
   padding: 20px;
-  color: white;
 }
 
 .List-titles {
@@ -28,7 +35,40 @@
   line-height: 1.5;
 }
 
+.List-item:hover {
+  background-color: #7caf52;
+  color: #222;
+}
+
 .Search-input {
 height: 32px;
 font-size: 16px;
+margin-top: 10px;
 }
+
+/* TODO: Bounce Markers
+@keyframes bounce {
+  from,
+  20%,
+  53%,
+  80%,
+  to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: translate3d(0, 0, 0);
+  }
+
+  40%,
+  43% {
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translate3d(0, -30px, 0);
+  }
+
+  70% {
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translate3d(0, -15px, 0);
+  }
+
+  90% {
+    transform: translate3d(0, -4px, 0);
+  }
+} */

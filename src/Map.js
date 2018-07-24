@@ -9,7 +9,7 @@ import {
 const MyGoogleMap = withGoogleMap(props => (
   <GoogleMap
     defaultCenter={{ lat: 35.68141812463663, lng: 139.73452655992435 }}
-    defaultZoom={13}
+    defaultZoom={12}
   >
     {props.stations.map(station => (
       <Marker
@@ -33,15 +33,13 @@ const MyGoogleMap = withGoogleMap(props => (
 class Map extends Component {
   render() {
     return (
-      <div>
-        <MyGoogleMap
-          containerElement={<div style={{ height: '100vh', width: '80vw' }} />}
-          mapElement={<div style={{ height: '100%' }} />}
-          showInfo={this.props.showInfo}
-          stations={this.props.stations}
-          infoWindow={this.props.infoWindow}
+      <MyGoogleMap
+        containerElement={<div style={{ height: '100vh', width: '80vw' }} />}
+        mapElement={<div style={{ height: '100%' }} />}
+        showInfo={this.props.showInfo}
+        stations={this.props.stations}
+        infoWindow={this.props.infoWindow}
         />
-      </div>
     );
   }
 }
