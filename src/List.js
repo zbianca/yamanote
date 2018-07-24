@@ -30,7 +30,7 @@ class List extends Component {
 
   render() {
     return (
-      <section className="App-header">
+      <section className="List-section">
         <img src={logo} className="App-logo" alt="logo" />
         <h1 className="App-title">Yamanote Line Stations</h1>
         <input
@@ -39,9 +39,14 @@ class List extends Component {
           value={this.state.query}
           onChange={event => this.updateQuery(event.target.value)}
         />
-        <ul>
+        <ul className="List-titles">
           {this.state.filteredStations.map(station => (
-            <li key={station.id}>{station.name}</li>
+            <li
+              key={station.id}
+              onClick={() => this.props.showInfo(station.id)}
+            >
+              {station.name}
+            </li>
           ))}
         </ul>
       </section>

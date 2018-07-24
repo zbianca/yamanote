@@ -7,6 +7,7 @@ import stations from './stations.js';
 class App extends Component {
   state = {
     stations,
+    infoWindow: '',
   };
 
   filterMarkers = filteredStations => {
@@ -19,14 +20,24 @@ class App extends Component {
     this.setState({ stations: updatedStations });
   };
 
+  showInfo = station => {
+    this.setState({ infoWindow: station });
+  };
+
   render() {
     return (
       <div className="App">
         <List
           stations={this.state.stations}
           filterMarkers={this.filterMarkers}
+          showInfo={this.showInfo}
+          infoWindow={this.state.infoWindow}
         />
-        <Map stations={this.state.stations} />
+        <Map
+          stations={this.state.stations}
+          showInfo={this.showInfo}
+          infoWindow={this.state.infoWindow}
+        />
       </div>
     );
   }
