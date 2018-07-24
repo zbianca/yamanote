@@ -34,6 +34,7 @@ class List extends Component {
         <img src={logo} className="App-logo" alt="logo" />
         <h1 className="App-title">Yamanote Line Stations</h1>
         <input
+          className="Search-input"
           type="text"
           placeholder="Search station"
           value={this.state.query}

@@ -8,8 +8,8 @@ import {
 
 const MyGoogleMap = withGoogleMap(props => (
   <GoogleMap
-    defaultCenter={{ lat: 35.69406568779301, lng: 139.7380327592773 }}
-    defaultZoom={12}
+    defaultCenter={{ lat: 35.68141812463663, lng: 139.73452655992435 }}
+    defaultZoom={13}
   >
     {props.stations.map(station => (
       <Marker
@@ -24,7 +24,7 @@ const MyGoogleMap = withGoogleMap(props => (
             <InfoWindow key={station.id}>
               <div>{station.name}</div>
             </InfoWindow>
-          )};
+          )}
       </Marker>
     ))}
   </GoogleMap>

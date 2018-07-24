@@ -174,7 +174,7 @@ const stations = [
       visible: true,
     },
     {
-      name: 'Shin-Shinagawa (Provisional)',
+      name: 'Shin-Shinagawa',
       id: 'JY26',
       position: { lat: 35.636389, lng: 139.741389 },
       visible: true,
