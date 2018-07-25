@@ -22,7 +22,11 @@ const MyGoogleMap = withGoogleMap(props => (
         {station.visible &&
           props.infoWindow === station.id && (
             <InfoWindow key={station.id}>
-              <div>{station.name}</div>
+              <div className="Info">
+              <h2>{station.name}</h2>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Tamachistation-mitaentrance-westentrance-jan27-2015.jpg/320px-Tamachistation-mitaentrance-westentrance-jan27-2015.jpg"alt="{station.name}" />
+              <p><b>Tokyo Station</b> is a railway station in the Chiyoda City, Tokyo, Japan. The original station is located in Chiyoda's Marunouchi business district near the Imperial Palace grounds. The newer Eastern extension is not far from the Ginza commercial district. Due to its large area covered, the station is divided into Marunouchi and Yaesu sides in its directional signage.</p>
+              </div>
             </InfoWindow>
           )}
       </Marker>
@@ -32,9 +36,10 @@ const MyGoogleMap = withGoogleMap(props => (
 
 class Map extends Component {
   render() {
+    const mapWidth = window.innerWidth - 215
     return (
       <MyGoogleMap
-        containerElement={<div style={{ height: '100vh', width: '80vw' }} />}
+        containerElement={<div style={{ height: '100vh', width: `${mapWidth}px` }} />}
         mapElement={<div style={{ height: '100%' }} />}
         showInfo={this.props.showInfo}
         stations={this.props.stations}

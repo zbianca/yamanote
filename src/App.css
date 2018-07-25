@@ -1,3 +1,4 @@
+
 .App {
   display: flex;
   align-items: stretch;
@@ -22,8 +23,7 @@
 }
 
 .List-section {
-  width: 20vw;
-  min-width: 215px;
+  width: 215px;
   background-color: #222;
   color: #fff;
   padding: 20px;
@@ -36,14 +36,38 @@
 }
 
 .List-item:hover {
+  width: 190px;
   background-color: #7caf52;
   color: #222;
+  cursor: pointer;
 }
 
 .Search-input {
 height: 32px;
 font-size: 16px;
 margin-top: 10px;
+}
+
+.Arrow {
+  float: right;
+  height: 40px;
+}
+
+.Slider {
+  position: absolute;
+  left: 220px;
+  top: calc(100vh/2);
+  cursor: pointer;
+  background-color: #222;
+  transition: background 1s;
+}
+
+.Slider:hover {
+  background-color: #fff;
+}
+
+.Info {
+  max-width: 320px;
 }
 
 /* TODO: Bounce Markers
