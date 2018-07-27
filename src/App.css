@@ -72,6 +72,15 @@ margin-top: 10px;
   border-bottom: 2px solid #7caf52;
 }
 
+.Source-link {
+  color: #7caf52;
+}
+
+.Source-link:hover {
+  font-weight: bold;
+  text-decoration: none;
+}
+
 /* TODO: Bounce Markers
 @keyframes bounce {
   from,

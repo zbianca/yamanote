@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Map from './Map';
+import MapContainer from './MapContainer';
 import List from './List';
 import stations from './stations.js';
 
@@ -30,9 +30,9 @@ class App extends Component {
 
   getWiki = station => {
     fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${station}`)
-    .then(r => r.json())
-    .then(r => this.saveWiki(station, r.thumbnail.source, r.extract))
-    .catch(e => console.error(e));
+      .then(r => r.json())
+      .then(r => this.saveWiki(station, r.thumbnail.source, r.extract))
+      .catch(e => console.error(e));
   };
 
   saveWiki = (station, thumb, paragraph) => {
@@ -50,7 +50,7 @@ class App extends Component {
           showInfo={this.showInfo}
           infoWindow={this.state.infoWindow}
         />
-        <Map
+        <MapContainer
           stations={this.state.stations}
           showInfo={this.showInfo}
           infoWindow={this.state.infoWindow}

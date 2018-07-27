@@ -1,54 +1,29 @@
-import React, { Component } from 'react';
-import {
-  withGoogleMap,
-  GoogleMap,
-  Marker,
-  InfoWindow,
-} from 'react-google-maps';
+import React from 'react';
+import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps';
+import StationMarker from './Marker';
 
-const MyGoogleMap = withGoogleMap(props => (
-  <GoogleMap
-    defaultCenter={{ lat: 35.68141812463663, lng: 139.73452655992435 }}
-    defaultZoom={12}
-  >
-    {props.stations.map(station => (
-      <Marker
+const Map = withScriptjs(
+  withGoogleMap(props => {
+    const markers = props.stations.map(station => (
+      <StationMarker
         key={station.id}
-        name={station.name}
-        position={station.position}
         visible={station.visible}
-        onClick={() => props.showInfo(station.id,station.wiki)}
-      >
-        {station.visible &&
-          props.infoWindow === station.id && (
-            <InfoWindow key={station.id}>
-              <div className="Info">
-                <h2 className="Info-title">{station.name}</h2>
-                <img src="samehere" alt="{station.name}" />
-                <p>somehow get props.content[station.wiki].paragraph after mount</p>
-              </div>
-            </InfoWindow>
-          )}
-      </Marker>
-    ))}
-  </GoogleMap>
-));
+        station={station}
+        showInfo={props.showInfo}
+        infoWindow={props.infoWindow}
+        content={props.content}
+      />
+    ));
 
-class Map extends Component {
-
-  render() {
-    const mapWidth = window.innerWidth - 215
     return (
-      <MyGoogleMap
-        containerElement={<div style={{ height: '100vh', width: `${mapWidth}px` }} />}
-        mapElement={<div style={{ height: '100%' }} />}
-        showInfo={this.props.showInfo}
-        stations={this.props.stations}
-        infoWindow={this.props.infoWindow}
-        content={this.props.content}
-        />
+      <GoogleMap
+        defaultZoom={12}
+        defaultCenter={{ lat: 35.68141812463663, lng: 139.73452655992435 }}
+      >
+        {markers}
+      </GoogleMap>
     );
-  }
-}
+  })
+);
 
 export default Map;
