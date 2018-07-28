@@ -3,7 +3,7 @@ import Map from './Map';
 
 class MapContainer extends Component {
   render() {
-    const mapWidth = window.innerWidth - 215;
+    const mapWidth = window.innerWidth - 230;
     return (
       <Map
         stations={this.props.stations}
@@ -15,7 +15,7 @@ class MapContainer extends Component {
         }
         loadingElement={<div style={{ height: '100%' }} />}
         containerElement={
-          <div style={{ height: '100vh', width: `${mapWidth}px` }} />
+          <div className="Map-section" role="application" style={{ height: '100vh', width: `${mapWidth}px` }} />
         }
         mapElement={<div style={{ height: '100%' }} />}
       />

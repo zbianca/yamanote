@@ -21,13 +21,11 @@ class StationMarker extends Component {
                       alt={this.props.station.name}
                     />
                     <p>{this.props.content[this.props.station.wiki].paragraph}</p>
-                    <p>Source: <a
-                        href={`https://en.wikipedia.org/wiki/${this.props.station.wiki}`}
-                        className="Source-link"
-                      >Wikipedia</a>
-                    </p>
                   </React.Fragment>
                 )}
+                <p>Read more at <a href={`https://en.wikipedia.org/wiki/${this.props.station.wiki}`}
+                    className="Source-link">Wikipedia</a>
+                </p>
               </div>
             </InfoWindow>
           )}
