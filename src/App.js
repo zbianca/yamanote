@@ -50,12 +50,17 @@ class App extends Component {
           showInfo={this.showInfo}
           infoWindow={this.state.infoWindow}
         />
-        <MapContainer
+        { (navigator.onLine) && (
+          <MapContainer
           stations={this.state.stations}
           showInfo={this.showInfo}
           infoWindow={this.state.infoWindow}
           content={this.state.content}
         />
+        )}
+        {(!navigator.onLine) && (
+          <h2 className="Offline-alert">Map is offline</h2>
+        )}
       </div>
     );
   }
