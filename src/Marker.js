@@ -3,14 +3,16 @@ import { Marker, InfoWindow } from 'react-google-maps';
 
 class StationMarker extends Component {
   render() {
+    let activateInfo = this.props.station.visible &&
+      this.props.infoWindow === this.props.station.id;
     return (
       <Marker
         position={this.props.station.position}
         visible={this.props.station.visible}
         onClick={() => this.props.showInfo(this.props.station.id, this.props.station.wiki)}
+        animation={activateInfo ? 1 : 0}
       >
-        {this.props.station.visible &&
-          this.props.infoWindow === this.props.station.id && (
+        {activateInfo && (
             <InfoWindow key={this.props.station.id} content={this.props}>
               <div className="Info">
                 <h2 className="Info-title">{this.props.station.name}</h2>
