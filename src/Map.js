@@ -4,12 +4,15 @@ import StationMarker from './Marker';
 
 const Map = withScriptjs(
   withGoogleMap(props => {
+    const zoom=props.zoom;
+    const center=props.center;
     const markers = props.stations.map(station => (
       <StationMarker
         key={station.id}
         visible={station.visible}
         station={station}
         showInfo={props.showInfo}
+        closeInfo={props.closeInfo}
         infoWindow={props.infoWindow}
         content={props.content}
       />
@@ -17,8 +20,7 @@ const Map = withScriptjs(
 
     return (
       <GoogleMap
-        defaultZoom={12}
-        defaultCenter={{ lat: 35.68141812463663, lng: 139.73452655992435 }}
+        zoom={zoom} center={center}
       >
         {markers}
       </GoogleMap>

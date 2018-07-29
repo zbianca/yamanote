@@ -9,11 +9,11 @@ class StationMarker extends Component {
       <Marker
         position={this.props.station.position}
         visible={this.props.station.visible}
-        onClick={() => this.props.showInfo(this.props.station.id, this.props.station.wiki)}
+        onClick={() => this.props.showInfo(this.props.station)}
         animation={activateInfo ? 1 : 0}
       >
         {activateInfo && (
-            <InfoWindow key={this.props.station.id} content={this.props}>
+            <InfoWindow key={this.props.station.id} content={this.props} onCloseClick={this.props.closeInfo}>
               <div className="Info">
                 <h2 className="Info-title">{this.props.station.name}</h2>
                 {this.props.content[this.props.station.wiki] && (

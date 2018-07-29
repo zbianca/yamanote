@@ -10,7 +10,14 @@ class App extends Component {
     infoWindow: '',
     content: {},
     ariaHiddenList: false,
-    //center:,
+    zoom: 12,
+    center: { lat: 35.68141812463663, lng: 139.73452655992435 },
+  };
+
+  componentDidMount() {
+    if (window.innerHeight >= 980) {
+      this.setState({ zoom: 13 });
+    };
   };
 
   filterMarkers = filteredStations => {
@@ -23,14 +30,33 @@ class App extends Component {
     this.setState({ stations: updatedStations });
   };
 
-  showInfo = (id, wiki) => {
-    this.setState({ infoWindow: id });
+  showInfo = (station) => {
+    // Google Map offers smooth transition til 3 units
+    const zoom = this.state.zoom + 3;
+    if (zoom < 17) {
+      this.setState({ zoom });
+    }
+
+    // const center = JSON.parse(JSON.stringify(station.position));
+    //center.lat -= 0.6;
+    // this.setState({ center });  TODO: smooth transition?
+
+    this.setState({ infoWindow: station.id });
     if (window.innerWidth <= 650) {
-    // for smaller screens
+    // for usability in smaller screens
       this.toggleList();
     }
-    if (!this.state.content.hasOwnProperty(wiki)) {
-      this.getWiki(wiki);
+    if (!this.state.content.hasOwnProperty(station.wiki)) {
+      this.getWiki(station.wiki);
+    }
+  };
+
+  closeInfo = () => {
+    this.setState({ infoWindow:'' });
+    //this.setState({ lat: 35.68141812463663, lng: 139.73452655992435 }); TODO: smooth transition?
+    const zoom = this.state.zoom - 3;
+    if (zoom > 11) {
+      this.setState({ zoom });
     }
   };
 
@@ -78,7 +104,10 @@ class App extends Component {
         { (navigator.onLine) && (
           <MapContainer
             stations={this.state.stations}
+            zoom={this.state.zoom}
+            center={this.state.center}
             showInfo={this.showInfo}
+            closeInfo={this.closeInfo}
             infoWindow={this.state.infoWindow}
             content={this.state.content}
           />

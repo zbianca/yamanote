@@ -45,7 +45,7 @@ class List extends Component {
             <li
               className="List-item"
               key={station.id}
-              onClick={() => this.props.showInfo(station.id,station.wiki)}
+              onClick={() => this.props.showInfo(station)}
             >
               {station.name}
             </li>

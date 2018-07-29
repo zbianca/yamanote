@@ -6,11 +6,14 @@ class MapContainer extends Component {
     return (
       <Map
           stations={this.props.stations}
+          zoom={this.props.zoom}
+          center={this.props.center}
           showInfo={this.props.showInfo}
+          closeInfo={this.props.closeInfo}
           infoWindow={this.props.infoWindow}
           content={this.props.content}
           googleMapURL={
-            'https://maps.googleapis.com/maps/api/js?key=API_KEY_HERE'
+            'https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY_HERE'
           }
           loadingElement={<div style={{ height: '100%' }} />}
           containerElement={
