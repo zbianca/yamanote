@@ -30,7 +30,7 @@ class List extends Component {
 
   render() {
     return (
-      <section className="List-section">
+      <section className="List-section" aria-hidden={this.props.ariaHidden}>
         <img src={logo} className="App-logo" alt="logo" />
         <h1 className="App-title">Yamanote&nbsp;Line</h1>
         <input
@@ -51,9 +51,6 @@ class List extends Component {
             </li>
           ))}
         </ul>
-        <div className="Slider">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 22" className="Arrow"><path fill="#7caf52" fillRule="evenodd" d="M4 11l8 8c.6.5.6 1.5 0 2-.5.6-1.5.6-2 0l-9-9c-.6-.5-.6-1.5 0-2l9-9c.5-.6 1.5-.6 2 0 .6.5.6 1.5 0 2l-8 8z" className="Arrow-path"></path></svg>
-        </div>
       </section>
     );
   }

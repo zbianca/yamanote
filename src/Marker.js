@@ -17,6 +17,7 @@ class StationMarker extends Component {
                 {this.props.content[this.props.station.wiki] && (
                   <React.Fragment>
                     <img
+                      className="Info-image"
                       src={this.props.content[this.props.station.wiki].thumb}
                       alt={this.props.station.name}
                     />
