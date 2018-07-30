@@ -2,7 +2,7 @@
 
 This project is part of the Front-End Web Developer Nanodegree Program by [Udacity](https://www.udacity.com/). It is a single page map application made with React and the Google Maps API.
 
-> [View the live version](https://zbianca.github.io/yamanote/index.html)
+>[Access the live version](https://zbianca.github.io/yamanote/index.html)
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). You can find the full and most recent version of the [Create React App guide here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
