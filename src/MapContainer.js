@@ -13,11 +13,11 @@ class MapContainer extends Component {
           infoWindow={this.props.infoWindow}
           content={this.props.content}
           googleMapURL={
-            'https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY_HERE'
+            'https://maps.googleapis.com/maps/api/js?key=API_KEY HERE'
           }
           loadingElement={<div style={{ height: '100%' }} />}
           containerElement={
-            <div className="Map-section" role="application" style={{ height: '100vh', width: `${window.innerWidth}px` }} />
+            <div className="Map-section" role="application" style={{ height: `${this.props.mapHeight}`, width: `${window.innerWidth}px` }} />
           }
           mapElement={<div style={{ height: '100%' }} />}
       />

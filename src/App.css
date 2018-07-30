@@ -1,6 +1,5 @@
 .App {
   display: flex;
-  align-items: stretch;
 }
 
 .App-logo {
@@ -20,16 +19,13 @@
 }
 
 .Map-section {
-  overflow: hidden;
   padding: 0;
 }
 
 .List-section {
-  min-width: 230px;
   background-color: #222;
   color: #fff;
-  overflow-x: hidden;
-  overflow-y: auto; /* TODO: review layout and need of this */
+  min-width: 230px;
   padding: 20px;
 }
 
@@ -106,7 +102,7 @@ margin-top: 10px;
   position: absolute;
   transform: translateX(-250px);
   z-index: 25;
-  overflow: hidden;
+  background-color: #222;
 }
 
 .closed-Slider {

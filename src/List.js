@@ -7,6 +7,10 @@ class List extends Component {
     filteredStations: this.props.stations,
   };
 
+  componentDidMount() {
+    this.props.adjustMapHeight();
+  };
+
   updateQuery = query => {
     this.setState({ query });
     // TODO: check possibilities to filter using a regular expression
@@ -30,7 +34,7 @@ class List extends Component {
 
   render() {
     return (
-      <section className="List-section" aria-hidden={this.props.ariaHidden}>
+      <section id="List" className="List-section" aria-hidden={this.props.ariaHidden}>
         <img src={logo} className="App-logo" alt="logo" />
         <h1 className="App-title">Yamanote&nbsp;Line</h1>
         <input

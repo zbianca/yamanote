@@ -10,14 +10,26 @@ class App extends Component {
     infoWindow: '',
     content: {},
     ariaHiddenList: false,
+    mapHeight: '',
     zoom: 12,
     center: { lat: 35.68141812463663, lng: 139.73452655992435 },
   };
 
   componentDidMount() {
+    // More zoom for bigger screens
     if (window.innerHeight >= 980) {
       this.setState({ zoom: 13 });
-    };
+    }
+  };
+
+  adjustMapHeight = () => {
+    let mapHeight = '100vh';
+    if (this.state.mapHeight === '') {
+      this.setState({ mapHeight });
+    }
+    mapHeight = `${document.getElementById('List').clientHeight}px`;
+    // ToDo: Chrome is ignoring padding. Find another solution!
+    this.setState({ mapHeight });
   };
 
   filterMarkers = filteredStations => {
@@ -42,9 +54,9 @@ class App extends Component {
     // this.setState({ center });  TODO: smooth transition?
 
     this.setState({ infoWindow: station.id });
-    if (window.innerWidth <= 650) {
     // for usability in smaller screens
-      this.toggleList();
+    if (window.innerWidth <= 650) {
+      this.closeList();
     }
     if (!this.state.content.hasOwnProperty(station.wiki)) {
       this.getWiki(station.wiki);
@@ -85,6 +97,18 @@ class App extends Component {
     this.setState({ ariaHiddenList });
   };
 
+  closeList = () => {
+    let el = document.querySelector('.List-section');
+    el.classList.add('closed-List');
+    el = document.querySelector('.Slider');
+    el.classList.add('closed-Slider');
+    el = document.querySelector('.Map-section');
+    el.classList.add('closed-Map');
+    // toggle aria-hidden
+    let ariaHiddenList = true;
+    this.setState({ ariaHiddenList });
+  };
+
   render() {
     return (
       <div className="App">
@@ -99,11 +123,13 @@ class App extends Component {
           stations={this.state.stations}
           filterMarkers={this.filterMarkers}
           showInfo={this.showInfo}
+          adjustMapHeight={this.adjustMapHeight}
           infoWindow={this.state.infoWindow}
         />
         { (navigator.onLine) && (
           <MapContainer
             stations={this.state.stations}
+            mapHeight={this.state.mapHeight}
             zoom={this.state.zoom}
             center={this.state.center}
             showInfo={this.showInfo}
