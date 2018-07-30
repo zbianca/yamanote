@@ -39,6 +39,7 @@ class List extends Component {
         <h1 className="App-title">Yamanote&nbsp;Line</h1>
         <input
           className="Search-input"
+          tabIndex={0}
           type="text"
           placeholder="Search station"
           value={this.state.query}
@@ -49,6 +50,7 @@ class List extends Component {
             <li
               className="List-item"
               key={station.id}
+              tabIndex={0}
               onClick={() => this.props.showInfo(station)}
             >
               {station.name}
