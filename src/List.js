@@ -9,7 +9,7 @@ class List extends Component {
 
   componentDidMount() {
     this.props.adjustMapHeight();
-  };
+  }
 
   updateQuery = query => {
     this.setState({ query });
@@ -34,11 +34,16 @@ class List extends Component {
 
   render() {
     return (
-      <section id="List" className="List-section" aria-hidden={this.props.ariaHidden}>
+      <section
+        id="List"
+        className="List-section"
+        aria-hidden={this.props.ariaHidden}
+      >
         <img src={logo} className="App-logo" alt="logo" />
         <h1 className="App-title">Yamanote&nbsp;Line</h1>
         <input
           className="Search-input"
+          aria-label="Search station by name"
           tabIndex={0}
           type="text"
           placeholder="Search station"
@@ -52,6 +57,7 @@ class List extends Component {
               key={station.id}
               tabIndex={0}
               onClick={() => this.props.showInfo(station)}
+              onKeyPress={() => this.props.showInfo(station)}
             >
               {station.name}
             </li>

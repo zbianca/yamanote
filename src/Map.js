@@ -4,8 +4,8 @@ import StationMarker from './Marker';
 
 const Map = withScriptjs(
   withGoogleMap(props => {
-    const zoom=props.zoom;
-    const center=props.center;
+    const zoom = props.zoom;
+    const center = props.center;
     const markers = props.stations.map(station => (
       <StationMarker
         key={station.id}
@@ -19,9 +19,7 @@ const Map = withScriptjs(
     ));
 
     return (
-      <GoogleMap
-        zoom={zoom} center={center}
-      >
+      <GoogleMap zoom={zoom} center={center}>
         {markers}
       </GoogleMap>
     );
