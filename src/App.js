@@ -13,6 +13,7 @@ class App extends Component {
     mapHeight: '', // 100vh => List component height
     zoom: 12, // default zoom
     center: { lat: 35.68141812463663, lng: 139.73452655992435 }, // default center
+    hasError: false,
   };
 
   componentDidMount() {
@@ -20,6 +21,10 @@ class App extends Component {
     if (window.innerHeight >= 980) {
       this.setState({ zoom: 13 });
     }
+  }
+
+  componentDidCatch(error, info) {
+    this.setState({ hasError: true });
   }
 
   /**
@@ -82,9 +87,16 @@ class App extends Component {
 
   getWiki = station => {
     fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${station}`)
+      .catch(e => {
+        this.saveWiki(
+          station,
+          '',
+          "Sorry! An error occured and we couldn't obtain the content requested. Please check your network and reload this page."
+        );
+        console.error(e);
+      })
       .then(r => r.json())
-      .then(r => this.saveWiki(station, r.thumbnail.source, r.extract))
-      .catch(e => console.error(e));
+      .then(r => this.saveWiki(station, r.thumbnail.source, r.extract));
   };
 
   saveWiki = (station, thumb, paragraph) => {
@@ -120,13 +132,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <button className="Slider" tabIndex={-1} onClick={this.toggleList}>
+        <button className="Slider" tabIndex={0} onClick={this.toggleList}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 13 22"
             className="Arrow"
             aria-labelledby="sliderTitle"
-            role="img"
           >
             <title id="sliderTitle">Hide/show list of stations</title>
             <path
@@ -145,19 +156,23 @@ class App extends Component {
           adjustMapHeight={this.adjustMapHeight}
           infoWindow={this.state.infoWindow}
         />
-        {navigator.onLine && (
-          <MapContainer
-            stations={this.state.stations}
-            mapHeight={this.state.mapHeight}
-            zoom={this.state.zoom}
-            center={this.state.center}
-            showInfo={this.showInfo}
-            closeInfo={this.closeInfo}
-            infoWindow={this.state.infoWindow}
-            content={this.state.content}
-          />
-        )}
+        {navigator.onLine &&
+          !this.state.hasError && (
+            <MapContainer
+              stations={this.state.stations}
+              mapHeight={this.state.mapHeight}
+              zoom={this.state.zoom}
+              center={this.state.center}
+              showInfo={this.showInfo}
+              closeInfo={this.closeInfo}
+              infoWindow={this.state.infoWindow}
+              content={this.state.content}
+            />
+          )}
         {!navigator.onLine && <h2 className="Offline-alert">Map is offline</h2>}
+        {this.state.hasError && (
+          <h2 className="Offline-alert">Ops, something went wrong!</h2>
+        )}
       </div>
     );
   }
