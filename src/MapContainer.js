@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Map from './Map';
 
+const MAPS_API_KEY = ''; // Add your key here. Don't commit it to a repository, use ENV variables.
+
 class MapContainer extends Component {
   render() {
     return (
@@ -13,7 +15,7 @@ class MapContainer extends Component {
         infoWindow={this.props.infoWindow}
         content={this.props.content}
         googleMapURL={
-          'https://maps.googleapis.com/maps/api/js?key=AIzaSyCmjYJxeyTbnrm0SFEGJea05tIc9LdHkS0'
+          `https://maps.googleapis.com/maps/api/js?key=${MAPS_API_KEY}`
         }
         loadingElement={<div style={{ height: '100%' }} />}
         containerElement={
